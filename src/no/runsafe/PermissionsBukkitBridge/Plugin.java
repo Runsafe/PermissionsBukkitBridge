@@ -8,6 +8,6 @@ public class Plugin extends RunsafePlugin
 	@Override
 	protected void PluginSetup()
 	{
-		RunsafePlayer.permissionHooks.add(new PermissionsBukkitWrapper());
+		addComponent(PermissionsBukkitWrapper.class);
 	}
 }

@@ -11,6 +11,11 @@ import java.util.List;
 
 public class PermissionsBukkitWrapper implements IPlayerPermissions
 {
+	public PermissionsBukkitWrapper(PluginResolver pluginResolver)
+	{
+		resolver = pluginResolver;
+	}
+
 	@Override
 	public List<String> getUserGroups(RunsafePlayer player)
 	{
