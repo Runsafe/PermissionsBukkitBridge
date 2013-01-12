@@ -1,6 +1,6 @@
 name: PermissionsBukkitBridge
 main: no.runsafe.PermissionsBukkitBridge.Plugin
-version: 1.0
+version: 1.0.@BUILD@
 author: mortenn
 description: Hooks PermissionsBukkit into the runsafe framework
 depend: [PermissionsBukkit]
