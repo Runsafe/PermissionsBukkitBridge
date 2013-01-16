@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="PermissionsBukkit-2.0">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../PermissionsBukkit-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/PermissionsBukkit-2.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
