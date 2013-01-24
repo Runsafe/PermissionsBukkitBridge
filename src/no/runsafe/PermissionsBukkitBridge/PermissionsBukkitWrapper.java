@@ -4,8 +4,8 @@ import com.platymuus.bukkit.permissions.Group;
 import com.platymuus.bukkit.permissions.PermissionsPlugin;
 import no.runsafe.framework.hook.IPlayerBuildPermission;
 import no.runsafe.framework.hook.IPlayerPermissions;
-import no.runsafe.framework.plugin.PluginResolver;
 import no.runsafe.framework.server.RunsafeLocation;
+import no.runsafe.framework.server.RunsafeServer;
 import no.runsafe.framework.server.player.RunsafePlayer;
 
 import java.util.ArrayList;
@@ -13,11 +13,6 @@ import java.util.List;
 
 public class PermissionsBukkitWrapper implements IPlayerPermissions, IPlayerBuildPermission
 {
-	public PermissionsBukkitWrapper(PluginResolver pluginResolver)
-	{
-		resolver = pluginResolver;
-	}
-
 	@Override
 	public List<String> getUserGroups(RunsafePlayer player)
 	{
@@ -38,15 +33,9 @@ public class PermissionsBukkitWrapper implements IPlayerPermissions, IPlayerBuil
 	private boolean hasPermissionsBukkit()
 	{
 		if (permissionsPlugin == null)
-			permissionsPlugin = getPermissionsBukkit();
+			permissionsPlugin = RunsafeServer.Instance.getPlugin("PermissionsBukkit");
 		return permissionsPlugin != null;
 	}
 
-	private PermissionsPlugin getPermissionsBukkit()
-	{
-		return resolver.getPlugin("PermissionsBukkit");
-	}
-
-	private PluginResolver resolver;
 	private PermissionsPlugin permissionsPlugin;
 }
