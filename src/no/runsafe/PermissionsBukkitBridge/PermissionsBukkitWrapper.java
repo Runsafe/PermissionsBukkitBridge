@@ -1,6 +1,7 @@
 package no.runsafe.PermissionsBukkitBridge;
 
 import com.platymuus.bukkit.permissions.Group;
+import com.platymuus.bukkit.permissions.PermissionInfo;
 import com.platymuus.bukkit.permissions.PermissionsPlugin;
 import no.runsafe.framework.hook.IPlayerBuildPermission;
 import no.runsafe.framework.hook.IPlayerPermissions;
@@ -35,12 +36,23 @@ public class PermissionsBukkitWrapper implements IPlayerPermissions, IPlayerBuil
 	@Override
 	public List<String> getGroupPermissions(String groupName)
 	{
-		Group group = permissionsPlugin.getGroup(groupName);
-		ArrayList<String> permissions = new ArrayList<String>();
-		for (Map.Entry<String, Boolean> permission : group.getInfo().getPermissions().entrySet())
-			if (permission.getValue())
-				permissions.add(permission.getKey());
-		return permissions;
+		// Trying to get this information from PermissionsBukkit only throws a NullPointerException.
+		return null;
+	}
+
+	@Override
+	public List<String> getPlayerPermissions(RunsafePlayer player)
+	{
+		PermissionInfo info = permissionsPlugin.getPlayerInfo(player.getName());
+		if (info != null)
+		{
+			ArrayList<String> granted = new ArrayList<String>();
+			for (Map.Entry<String, Boolean> permission : info.getPermissions().entrySet())
+				if (permission.getValue())
+					granted.add(permission.getKey());
+			return granted;
+		}
+		return null;
 	}
 
 	@Override
