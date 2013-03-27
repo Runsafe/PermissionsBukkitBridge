@@ -11,6 +11,7 @@ import no.runsafe.framework.server.player.RunsafePlayer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class PermissionsBukkitWrapper implements IPlayerPermissions, IPlayerBuildPermission
 {
@@ -29,6 +30,17 @@ public class PermissionsBukkitWrapper implements IPlayerPermissions, IPlayerBuil
 			results.add(group.getName());
 		console.fine("PermissionsBukkit says %s has groups %s", player, results);
 		return results;
+	}
+
+	@Override
+	public List<String> getGroupPermissions(String groupName)
+	{
+		Group group = permissionsPlugin.getGroup(groupName);
+		ArrayList<String> permissions = new ArrayList<String>();
+		for (Map.Entry<String, Boolean> permission : group.getInfo().getPermissions().entrySet())
+			if (permission.getValue())
+				permissions.add(permission.getKey());
+		return permissions;
 	}
 
 	@Override
